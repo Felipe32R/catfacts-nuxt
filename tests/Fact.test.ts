@@ -19,4 +19,18 @@ describe("Fact", () => {
     const wrapper = mount(FactPage);
     expect(wrapper.find(".text-blue-light").text()).toBe("Loading...");
   });
+  test("displays current fact when not loading", async () => {
+    const wrapper = mount(FactPage);
+    await wrapper.setData({ isLoading: false });
+    expect(wrapper.find(".text-blue-light").text()).toBe(
+      wrapper.vm.currentFact
+    );
+  });
+
+  test("calls getNextFact when button is clicked", async () => {
+    const wrapper = mount(FactPage);
+    const button = wrapper.find("button");
+    await button.trigger("click");
+    expect(wrapper.vm.getNextFact).toHaveBeenCalled();
+  });
 });
