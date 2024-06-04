@@ -2,11 +2,11 @@
 import { mountSuspended } from "@nuxt/test-utils/runtime";
 import { mount } from "@vue/test-utils";
 import { describe, expect, test } from "vitest";
-import FactPage from "./index.vue";
+import FactPage from "../pages/index.vue";
 
 describe("Fact", () => {
   test("can mount the component", async () => {
-    const component = await import("./index.vue");
+    const component = await mountSuspended(FactPage);
     expect(component).toBeDefined();
   });
 
